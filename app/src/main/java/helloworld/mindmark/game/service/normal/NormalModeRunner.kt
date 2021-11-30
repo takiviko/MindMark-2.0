@@ -21,6 +21,7 @@ class NormalModeRunner : GameModeRunner {
     private var clickHappenedInTimeWindow: Boolean = false
     private var timeAtTick: Long = System.currentTimeMillis()
     private var timeAtClick: Long = System.currentTimeMillis()
+    private var roundCount: Int = 0
 
     private lateinit var uiColours: UiColour
 
@@ -32,6 +33,8 @@ class NormalModeRunner : GameModeRunner {
         val timer = object: CountDownTimer(gameSpeed * gameLength, gameSpeed) {
             override fun onTick(millisUntilFinished: Long) {
                 if (!gameIsFinished) {
+                    roundCount++
+                    binding.roundCounter.text = getRoundCountText()
                     loop()
                 }
             }
@@ -81,7 +84,7 @@ class NormalModeRunner : GameModeRunner {
         timeAtClick = System.currentTimeMillis()
 
         if (!gameIsFinished && !clickHappenedInTimeWindow) {
-            var timeElapsed: Long = getTimeElapsedInMillis(button)
+            val timeElapsed: Long = getTimeElapsedInMillis(button)
             printTimeElapsed(timeElapsed)
             scores.add(timeElapsed)
             clickHappenedInTimeWindow = true
@@ -124,6 +127,10 @@ class NormalModeRunner : GameModeRunner {
 
     private fun getFinalScore(): Long {
         return scores.stream().reduce(0L, Long::plus)
+    }
+
+    private fun getRoundCountText(): String {
+        return "$roundCount/$gameLength"
     }
 
     enum class Button {

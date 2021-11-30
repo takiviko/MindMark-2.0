@@ -11,4 +11,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="right_button">Right Button</string>
     <string name="left_button">Left Button</string>
+    <string name="top_panel_text">text</string>
+    <string name="round_counter_text_default">0/10</string>
 </resources>
