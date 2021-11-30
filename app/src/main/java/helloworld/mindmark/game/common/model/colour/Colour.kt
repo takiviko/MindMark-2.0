@@ -1,4 +1,4 @@
-package helloworld.mindmark.game.data
+package helloworld.mindmark.game.common.model.colour
 
 enum class Colour(val hex: Int) {
 

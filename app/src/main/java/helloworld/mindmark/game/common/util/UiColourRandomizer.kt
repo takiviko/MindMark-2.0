@@ -1,7 +1,7 @@
-package helloworld.mindmark.game.service.util
+package helloworld.mindmark.game.common.util
 
-import helloworld.mindmark.game.data.Colour
-import helloworld.mindmark.game.data.UiColour
+import helloworld.mindmark.game.common.model.colour.Colour
+import helloworld.mindmark.game.common.model.colour.UiColour
 
 class UiColourRandomizer {
 

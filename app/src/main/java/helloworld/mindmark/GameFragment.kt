@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import helloworld.mindmark.databinding.FragmentGameBinding
+import helloworld.mindmark.game.common.model.gamemode.GameMode
 import helloworld.mindmark.game.service.GameService
 
 /**
@@ -34,7 +35,10 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        gameService.run(binding)
+        //To be passed from the previous screen
+        val gameType = GameMode.NORMAL
+
+        gameService.run(binding, gameType)
 
     }
 

@@ -1,4 +1,4 @@
-package helloworld.mindmark.game.data
+package helloworld.mindmark.game.common.model.colour
 
 data class UiColour(
     val buttonColours: List<Colour>,
