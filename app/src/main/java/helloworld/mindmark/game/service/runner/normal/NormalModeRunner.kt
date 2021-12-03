@@ -1,19 +1,25 @@
-package helloworld.mindmark.game.service.normal
+package helloworld.mindmark.game.service.runner.normal
 
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
+import helloworld.mindmark.GameFragmentDirections
 import helloworld.mindmark.databinding.FragmentGameBinding
-import helloworld.mindmark.game.common.model.colour.Colour
 import helloworld.mindmark.game.common.model.colour.UiColour
+import helloworld.mindmark.game.common.model.dto.ScoreDTO
 import helloworld.mindmark.game.common.util.UiColourRandomizer
 import helloworld.mindmark.game.service.runner.GameModeRunner
+import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.buttonCount
+import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.finishCountDownTime
+import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.gameSpeed
+import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.gameLength
 
 class NormalModeRunner : GameModeRunner {
 
     private lateinit var binding: FragmentGameBinding
 
-    private val buttonCount: Int = 2    //The number of buttons that is on the bottom of the screen
-    private val gameLength: Int = 10    //The number of rounds to be played
-    private val gameSpeed: Long = 2000    //The amount of time between rounds (ms)
     private val uiColourRandomizer = UiColourRandomizer()
     private val scores: MutableList<Long> = mutableListOf()
 
@@ -48,6 +54,12 @@ class NormalModeRunner : GameModeRunner {
                 gameIsFinished = true
                 val text = getFinishedText()
                 binding.textView.text = text
+
+                val action: NavDirections = GameFragmentDirections.actionGameFragmentToHighScoreFragment(ScoreDTO(scores))
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    binding.root.findNavController().navigate(action)
+                }, finishCountDownTime)
             }
         }
 

@@ -10,9 +10,8 @@
         android:name="helloworld.mindmark.MenuFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_menu">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/action_MenuFragment_to_GameFragment"
             app:destination="@id/GameFragment" />
     </fragment>
     <fragment
@@ -20,9 +19,20 @@
         android:name="helloworld.mindmark.GameFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_game">
-
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_GameFragment_to_HighScoreFragment"
+            app:destination="@id/HighScoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HighScoreFragment"
+        android:name="helloworld.mindmark.HighScoreFragment"
+        android:label="@string/high_score_fragment_label"
+        tools:layout="@layout/fragment_high_score">
+        <action
+            android:id="@+id/action_HighScoreFragment_to_MenuFragment"
             app:destination="@id/MenuFragment" />
+        <argument
+            android:name="scores"
+            app:argType="helloworld.mindmark.game.common.model.dto.ScoreDTO" />
     </fragment>
 </navigation>

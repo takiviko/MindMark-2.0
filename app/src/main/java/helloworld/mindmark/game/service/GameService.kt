@@ -3,7 +3,7 @@ package helloworld.mindmark.game.service
 import helloworld.mindmark.databinding.FragmentGameBinding
 import helloworld.mindmark.game.common.model.gamemode.GameMode
 import helloworld.mindmark.game.exception.UnknownGameModeException
-import helloworld.mindmark.game.service.normal.NormalModeRunner
+import helloworld.mindmark.game.service.runner.normal.NormalModeRunner
 
 class GameService {
 

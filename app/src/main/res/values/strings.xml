@@ -13,4 +13,7 @@
     <string name="left_button">Left Button</string>
     <string name="top_panel_text">text</string>
     <string name="round_counter_text_default">0/10</string>
+    <string name="high_score_fragment_label">high_score_fragment</string>
+    <string name="high_score_screen_textview_text">TextView</string>
+    <string name="high_score_screen_back_button_text">Back</string>
 </resources>
