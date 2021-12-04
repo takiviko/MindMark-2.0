@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MenuFragment"
-        android:name="helloworld.mindmark.MenuFragment"
+        android:name="helloworld.mindmark.fragment.MenuFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_menu">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/GameFragment"
-        android:name="helloworld.mindmark.GameFragment"
+        android:name="helloworld.mindmark.fragment.GameFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_game">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/HighScoreFragment"
-        android:name="helloworld.mindmark.HighScoreFragment"
+        android:name="helloworld.mindmark.fragment.HighScoreFragment"
         android:label="@string/high_score_fragment_label"
         tools:layout="@layout/fragment_high_score">
         <action

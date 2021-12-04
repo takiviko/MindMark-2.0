@@ -1,16 +1,12 @@
 package helloworld.mindmark.game.service.runner.normal
 
-import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
-import helloworld.mindmark.GameFragmentDirections
 import helloworld.mindmark.database.AppDatabase
-import helloworld.mindmark.database.entity.Player
-import helloworld.mindmark.database.entity.Score
 import helloworld.mindmark.databinding.FragmentGameBinding
+import helloworld.mindmark.fragment.GameFragmentDirections
 import helloworld.mindmark.game.common.model.colour.UiColour
 import helloworld.mindmark.game.common.model.dto.ScoreDTO
 import helloworld.mindmark.game.common.util.UiColourRandomizer
@@ -28,6 +24,9 @@ class NormalModeRunner : GameModeRunner {
     private val uiColourRandomizer = UiColourRandomizer()
     private val scores: MutableList<Long> = mutableListOf()
 
+    private val mHandler = Handler()
+    private val mUiThread: Thread? = null
+
     private var gameIsFinished: Boolean = true
     private var clickHappenedInTimeWindow: Boolean = true
     private var timeAtTick: Long = System.currentTimeMillis()
@@ -40,61 +39,74 @@ class NormalModeRunner : GameModeRunner {
         this.binding = binding
 
         setUp()
+        gameLoop()
 
-        val timer = object: CountDownTimer(gameSpeed * gameLength, gameSpeed) {
-            override fun onTick(millisUntilFinished: Long) {
-                if (!gameIsFinished) {
-                    roundCount++
-                    binding.roundCounter.text = getRoundCountText()
-                    loop()
-                }
-            }
-
-            override fun onFinish() {
-
-                if (!clickHappenedInTimeWindow) {
-                    scores.add(gameSpeed)
-                }
-
-                gameIsFinished = true
-                val text = getFinishedText()
-                binding.textView.text = text
-
-                val action: NavDirections = GameFragmentDirections.actionGameFragmentToHighScoreFragment(ScoreDTO(scores))
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.root.findNavController().navigate(action)
-                }, finishCountDownTime)
-            }
-        }
-
-        timer.start()
     }
 
-    private fun loop() {
+    private fun gameLoop() {
+        val timer = Timer()
+        val timerTask = object : TimerTask() {
 
+            override fun run() {
+                runOnUiThread(kotlinx.coroutines.Runnable {
+                    if (roundCount < gameLength) {
+                        onTick()
+                    } else {
+                        onFinish()
+                        timer.cancel()
+                    }
+                })
+            }
+        }
+        timer.schedule(timerTask, gameSpeed, gameSpeed)
+        return
+    }
+
+    private fun onTick() {
+        if (!gameIsFinished) {
+            roundCount++
+            binding.roundCounter.text = getRoundCountText()
+
+            if (!clickHappenedInTimeWindow) {
+                scores.add(gameSpeed)
+            }
+
+            clickHappenedInTimeWindow = false
+            timeAtTick = System.currentTimeMillis()
+            randomizeUiColours()
+        }
+    }
+
+    fun onFinish() {
         if (!clickHappenedInTimeWindow) {
             scores.add(gameSpeed)
         }
 
-        clickHappenedInTimeWindow = false
-        timeAtTick = System.currentTimeMillis()
-        randomizeUiColours()
+        gameIsFinished = true
+        val text = getFinishedText()
+        binding.textView.text = text
+
+        val action: NavDirections = GameFragmentDirections.actionGameFragmentToHighScoreFragment(ScoreDTO(scores))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.root.findNavController().navigate(action)
+        }, finishCountDownTime)
     }
 
     private fun setUp() {
+        runOnUiThread(kotlinx.coroutines.Runnable {
+            this.gameIsFinished = false
 
-        this.gameIsFinished = false
+            setInitialColours()
 
-        randomizeUiColours()
+            binding.leftButton.setOnClickListener {
+                handleButtonClick(Button.LEFT)
+            }
 
-        binding.leftButton.setOnClickListener {
-            handleButtonClick(Button.LEFT)
-        }
-
-        binding.rightButton.setOnClickListener {
-            handleButtonClick(Button.RIGHT)
-        }
+            binding.rightButton.setOnClickListener {
+                handleButtonClick(Button.RIGHT)
+            }
+        })
     }
 
     private fun handleButtonClick(button: Button) {
@@ -106,6 +118,18 @@ class NormalModeRunner : GameModeRunner {
             scores.add(timeElapsed)
             clickHappenedInTimeWindow = true
         }
+    }
+
+    private fun setInitialColours() {
+
+        val textViewText = "Get ready!"
+        binding.textView.text = textViewText
+
+        val greyColour = 0x44444444
+
+        binding.topPanel.setBackgroundColor(greyColour)
+        binding.leftButton.setBackgroundColor(greyColour)
+        binding.rightButton.setBackgroundColor(greyColour)
     }
 
     private fun randomizeUiColours() {
@@ -148,6 +172,15 @@ class NormalModeRunner : GameModeRunner {
 
     private fun getRoundCountText(): String {
         return "$roundCount/$gameLength"
+    }
+
+    //From Activity.java
+    fun runOnUiThread(action: Runnable) {
+        if (Thread.currentThread() !== mUiThread) {
+            mHandler.post(action)
+        } else {
+            action.run()
+        }
     }
 
     enum class Button {

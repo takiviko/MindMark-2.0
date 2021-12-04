@@ -34,7 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "pokemon_database")
+                        "mindmark_database")
                         .allowMainThreadQueries()
                         .fallbackToDestructiveMigration()
                         .build()
