@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import helloworld.mindmark.database.AppDatabase
 import helloworld.mindmark.databinding.FragmentGameBinding
 import helloworld.mindmark.game.common.model.gamemode.GameMode
 import helloworld.mindmark.game.service.GameService
@@ -38,7 +39,9 @@ class GameFragment : Fragment() {
         //To be passed from the previous screen
         val gameType = GameMode.NORMAL
 
-        gameService.run(binding, gameType)
+        val db = AppDatabase.getInstance(requireNotNull(this.activity).application)
+
+        gameService.run(binding, gameType, db)
 
     }
 

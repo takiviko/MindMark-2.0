@@ -3,9 +3,13 @@ package helloworld.mindmark.game.service.runner.normal
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import helloworld.mindmark.GameFragmentDirections
+import helloworld.mindmark.database.AppDatabase
+import helloworld.mindmark.database.entity.Player
+import helloworld.mindmark.database.entity.Score
 import helloworld.mindmark.databinding.FragmentGameBinding
 import helloworld.mindmark.game.common.model.colour.UiColour
 import helloworld.mindmark.game.common.model.dto.ScoreDTO
@@ -13,8 +17,9 @@ import helloworld.mindmark.game.common.util.UiColourRandomizer
 import helloworld.mindmark.game.service.runner.GameModeRunner
 import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.buttonCount
 import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.finishCountDownTime
-import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.gameSpeed
 import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.gameLength
+import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.gameSpeed
+import java.util.*
 
 class NormalModeRunner : GameModeRunner {
 
@@ -24,14 +29,14 @@ class NormalModeRunner : GameModeRunner {
     private val scores: MutableList<Long> = mutableListOf()
 
     private var gameIsFinished: Boolean = true
-    private var clickHappenedInTimeWindow: Boolean = false
+    private var clickHappenedInTimeWindow: Boolean = true
     private var timeAtTick: Long = System.currentTimeMillis()
     private var timeAtClick: Long = System.currentTimeMillis()
     private var roundCount: Int = 0
 
     private lateinit var uiColours: UiColour
 
-    override fun run(binding: FragmentGameBinding) {
+    override fun run(binding: FragmentGameBinding, db: AppDatabase) {
         this.binding = binding
 
         setUp()
