@@ -35,7 +35,7 @@ class NormalModeRunner : GameModeRunner {
 
     private lateinit var uiColours: UiColour
 
-    override fun run(binding: FragmentGameBinding, db: AppDatabase) {
+    override fun run(binding: FragmentGameBinding) {
         this.binding = binding
 
         setUp()
@@ -176,11 +176,7 @@ class NormalModeRunner : GameModeRunner {
 
     //From Activity.java
     fun runOnUiThread(action: Runnable) {
-        if (Thread.currentThread() !== mUiThread) {
-            mHandler.post(action)
-        } else {
-            action.run()
-        }
+        mHandler.post(action)
     }
 
     enum class Button {

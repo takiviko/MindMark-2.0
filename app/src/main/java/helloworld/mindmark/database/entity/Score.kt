@@ -10,13 +10,13 @@ import java.util.UUID
     foreignKeys = [
         ForeignKey(
             entity = Player::class,
-            parentColumns = arrayOf("uuid"),
+            parentColumns = arrayOf("id"),
             childColumns = arrayOf("playerId"))])
 
 data class Score(
     @PrimaryKey
     @TypeConverters(UUIDConverter::class)
-    val uuid: UUID,
+    val id: UUID,
 
     @ColumnInfo
     val playerId: UUID,

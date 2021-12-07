@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import helloworld.mindmark.database.AppDatabase
 import helloworld.mindmark.databinding.FragmentGameBinding
 import helloworld.mindmark.game.common.model.gamemode.GameMode
 import helloworld.mindmark.game.service.GameService
@@ -16,9 +15,6 @@ import helloworld.mindmark.game.service.GameService
 class GameFragment : Fragment() {
 
     private var _binding: FragmentGameBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private val gameService: GameService = GameService()
@@ -39,9 +35,7 @@ class GameFragment : Fragment() {
         //To be passed from the previous screen
         val gameType = GameMode.NORMAL
 
-        val db = AppDatabase.getInstance(requireNotNull(this.activity).application)
-
-        gameService.run(binding, gameType, db)
+        gameService.run(binding, gameType)
 
     }
 

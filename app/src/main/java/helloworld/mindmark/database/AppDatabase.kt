@@ -1,10 +1,9 @@
 package helloworld.mindmark.database
 
+import android.content.ContentValues
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteDatabase
 import helloworld.mindmark.database.dao.PlayerDao
 import helloworld.mindmark.database.dao.ScoreDao
 import helloworld.mindmark.database.entity.Player
@@ -35,12 +34,32 @@ abstract class AppDatabase : RoomDatabase() {
                         context.applicationContext,
                         AppDatabase::class.java,
                         "mindmark_database")
+                        .addCallback(InitializeCallback())
                         .allowMainThreadQueries()
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
                 }
                 return instance
+            }
+        }
+    }
+
+    class InitializeCallback : RoomDatabase.Callback() {
+
+        private val dbConfig = DBConfig()
+
+        override fun onCreate(db: SupportSQLiteDatabase) = db.run {
+            beginTransaction()
+            try {
+                val players = ContentValues().apply {
+                    put("id", dbConfig.getDefaultPlayerId().toString())
+                    put("name", dbConfig.getDefaultPlayerName())
+                }
+                insert("player", OnConflictStrategy.ABORT, players)
+                setTransactionSuccessful()
+            } finally {
+                endTransaction()
             }
         }
     }

@@ -12,7 +12,7 @@ data class Player(
 
     @TypeConverters(UUIDConverter::class)
     @PrimaryKey
-    val uuid: UUID,
+    val id: UUID,
 
     @ColumnInfo(name = "name")
     val name: String?

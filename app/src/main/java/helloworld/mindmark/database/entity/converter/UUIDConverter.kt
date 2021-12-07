@@ -11,7 +11,7 @@ class UUIDConverter {
     }
 
     @TypeConverter
-    fun toUuid(string: String): UUID {
+    fun toUUID(string: String): UUID {
         return UUID.fromString(string)
     }
 
