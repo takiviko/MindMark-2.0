@@ -1,4 +1,4 @@
-package helloworld.mindmark.database
+package helloworld.mindmark.database.config
 
 import java.util.*
 

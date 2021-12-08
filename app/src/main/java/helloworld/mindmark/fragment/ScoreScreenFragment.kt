@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import helloworld.mindmark.MainActivity
 import helloworld.mindmark.database.AppDatabase
-import helloworld.mindmark.database.DBConfig
+import helloworld.mindmark.database.config.DBConfig
 import helloworld.mindmark.databinding.FragmentScoreScreenBinding
 import helloworld.mindmark.scorescreen.ScoreItemAdapter
+import helloworld.mindmark.scorescreen.ScoreScreenHeaderAdapter
 import helloworld.mindmark.scorescreen.mapper.ScoreItemMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -24,7 +26,8 @@ class ScoreScreenFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var db: AppDatabase
-    private val scoreItemAdapter = ScoreItemAdapter(mutableListOf())
+    private lateinit var scoreItemAdapter: ScoreItemAdapter
+    private lateinit var scoreScreenHeaderAdapter: ScoreScreenHeaderAdapter
 
     private val scoreItemMapper = ScoreItemMapper()
     private val dbConfig = DBConfig()
@@ -41,11 +44,14 @@ class ScoreScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        scoreItemAdapter = ScoreItemAdapter(mutableListOf())
+        scoreScreenHeaderAdapter = ScoreScreenHeaderAdapter(layoutInflater)
+
         db = (activity as MainActivity?)?.getDatabase()!!
 
         val recyclerView = binding.scoreScreenRecycleView
 
-        recyclerView.adapter = scoreItemAdapter
+        recyclerView.adapter = ConcatAdapter(scoreScreenHeaderAdapter, scoreItemAdapter)
         recyclerView.layoutManager = LinearLayoutManager(requireContext().applicationContext)
 
         updateScores(db)

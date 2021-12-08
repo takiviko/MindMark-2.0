@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
+import helloworld.mindmark.database.config.DBConfig
 import helloworld.mindmark.database.dao.PlayerDao
 import helloworld.mindmark.database.dao.ScoreDao
 import helloworld.mindmark.database.entity.Player

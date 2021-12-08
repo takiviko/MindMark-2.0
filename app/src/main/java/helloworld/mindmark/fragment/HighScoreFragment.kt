@@ -10,12 +10,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import helloworld.mindmark.MainActivity
 import helloworld.mindmark.R
-import helloworld.mindmark.database.DBConfig
+import helloworld.mindmark.database.config.DBConfig
 import helloworld.mindmark.database.entity.Score
 import helloworld.mindmark.databinding.FragmentHighScoreBinding
 import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.gameSpeed
-import kotlinx.coroutines.*
-import java.lang.Runnable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.sql.Date
 import java.time.Instant
 import java.util.*
