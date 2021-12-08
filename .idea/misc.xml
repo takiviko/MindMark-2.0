@@ -13,6 +13,8 @@
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/fragment_landing_page.xml" value="0.14" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/fragment_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/fragment_nav_host.xml" value="0.15729166666666666" />
+        <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/fragment_score_item.xml" value="0.33" />
+        <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/fragment_score_screen.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/fragment_second.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/game.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/game_layout.xml" value="0.22" />
@@ -21,6 +23,7 @@
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/landing_page_fragment.xml" value="0.33" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/menu.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/nav_host_fragment.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/layout/score_item.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/ViktorTakacs/AndroidStudioProjects/MindMark/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
       </map>
     </option>
