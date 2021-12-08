@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import helloworld.mindmark.MainActivity
 import helloworld.mindmark.R
@@ -40,9 +42,8 @@ class HighScoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.highScoreScreenBackButton.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.action_HighScoreFragment_to_MenuFragment)
-        }
+        handleVirtualBackButton()
+        handlePhysicalBackButton()
 
         val args: HighScoreFragmentArgs by navArgs()
         val scores = args.scores.scores
@@ -75,6 +76,18 @@ class HighScoreFragment : Fragment() {
     private fun runOnSeparateThread(runnable: Runnable) {
         GlobalScope.launch(Dispatchers.Default) {
             runnable.run()
+        }
+    }
+
+    private fun handleVirtualBackButton() {
+        binding.highScoreScreenBackButton.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_HighScoreFragment_to_MenuFragment)
+        }
+    }
+
+    private fun handlePhysicalBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().navigate(R.id.action_HighScoreFragment_to_MenuFragment)
         }
     }
 

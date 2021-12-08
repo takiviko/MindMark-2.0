@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import helloworld.mindmark.R
 import helloworld.mindmark.databinding.FragmentMenuBinding
+import kotlin.system.exitProcess
 
 /**
  * Fragment class for the main menu.
@@ -32,6 +35,11 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            finishAffinity(requireActivity())
+            exitProcess(0)
+        }
 
         binding.playButton.setOnClickListener {
             findNavController().navigate(R.id.action_MenuFragment_to_GameFragment)
