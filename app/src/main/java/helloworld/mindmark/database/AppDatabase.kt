@@ -7,17 +7,20 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import helloworld.mindmark.database.config.DBConfig
 import helloworld.mindmark.database.dao.PlayerDao
 import helloworld.mindmark.database.dao.ScoreDao
+import helloworld.mindmark.database.dao.StatisticsDao
 import helloworld.mindmark.database.entity.Player
 import helloworld.mindmark.database.entity.Score
+import helloworld.mindmark.database.entity.Statistics
 import helloworld.mindmark.database.entity.converter.DateConverter
 import helloworld.mindmark.database.entity.converter.UUIDConverter
 
-@Database(entities = [Player::class, Score::class], version = 1)
+@Database(entities = [Player::class, Score::class, Statistics::class], version = 1)
 @TypeConverters(UUIDConverter::class, DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun playerDao(): PlayerDao
     abstract fun scoreDao(): ScoreDao
+    abstract fun statisticsDao(): StatisticsDao
 
     companion object {
 

@@ -12,8 +12,8 @@ import java.util.UUID
             entity = Player::class,
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("playerId"))])
-
 data class Score(
+
     @PrimaryKey
     @TypeConverters(UUIDConverter::class)
     val id: UUID,
