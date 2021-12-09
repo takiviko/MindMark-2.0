@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_MenuFragment_to_scoreScreenFragment"
             app:destination="@id/scoreScreenFragment" />
+        <action
+            android:id="@+id/action_MenuFragment_to_gameDescriptionFragment"
+            app:destination="@id/gameDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/GameFragment"
@@ -53,4 +56,9 @@
         <argument android:name="detailedScoreItem"
             app:argType="helloworld.mindmark.scorescreen.details.model.DetailedScoreDTO" />
     </fragment>
+    <fragment
+        android:id="@+id/gameDescriptionFragment"
+        android:name="helloworld.mindmark.GameDescriptionFragment"
+        android:label="fragment_game_description"
+        tools:layout="@layout/fragment_game_description" />
 </navigation>

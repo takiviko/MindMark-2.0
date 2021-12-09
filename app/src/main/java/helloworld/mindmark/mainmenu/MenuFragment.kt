@@ -48,6 +48,10 @@ class MenuFragment : Fragment() {
         binding.scoreScreenButton.setOnClickListener {
             findNavController().navigate(R.id.action_MenuFragment_to_scoreScreenFragment)
         }
+
+        binding.menuGameDescriptionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuFragment_to_gameDescriptionFragment)
+        }
     }
 
     override fun onDestroyView() {
