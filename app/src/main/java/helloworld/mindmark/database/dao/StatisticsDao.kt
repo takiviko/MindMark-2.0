@@ -9,10 +9,10 @@ import java.util.*
 @Dao
 interface StatisticsDao {
 
-    @Insert
-    fun saveStatistics(statistics: Statistics)
-
     @Query("select * from statistics where scoreId = :scoreId")
     fun findByScoreId(scoreId: UUID): Statistics
+
+    @Insert
+    fun saveStatistics(statistics: Statistics)
 
 }

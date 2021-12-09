@@ -41,5 +41,16 @@
     <fragment
         android:id="@+id/scoreScreenFragment"
         android:name="helloworld.mindmark.scorescreen.ScoreScreenFragment"
-        android:label="ScoreScreenFragment" />
+        android:label="ScoreScreenFragment" >
+        <action
+            android:id="@+id/action_scoreScreenFragment_to_detailedScoreScreenFragment"
+            app:destination="@id/detailedScoreScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedScoreScreenFragment"
+        android:name="helloworld.mindmark.scorescreen.details.DetailedScoreScreenFragment"
+        android:label="DetailedScoreScreenFragment" >
+        <argument android:name="detailedScoreItem"
+            app:argType="helloworld.mindmark.scorescreen.details.model.DetailedScoreDTO" />
+    </fragment>
 </navigation>

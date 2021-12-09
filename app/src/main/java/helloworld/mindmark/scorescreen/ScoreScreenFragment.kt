@@ -44,7 +44,7 @@ class ScoreScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        scoreItemAdapter = ScoreItemAdapter(mutableListOf())
+        scoreItemAdapter = ScoreItemAdapter(mutableListOf(), binding)
         scoreScreenHeaderAdapter = ScoreScreenHeaderAdapter(layoutInflater)
 
         db = (activity as MainActivity?)?.getDatabase()!!
