@@ -1,4 +1,4 @@
-package helloworld.mindmark.fragment
+package helloworld.mindmark.scorescreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import helloworld.mindmark.MainActivity
 import helloworld.mindmark.database.AppDatabase
 import helloworld.mindmark.database.config.DBConfig
 import helloworld.mindmark.databinding.FragmentScoreScreenBinding
-import helloworld.mindmark.scorescreen.ScoreItemAdapter
-import helloworld.mindmark.scorescreen.ScoreScreenHeaderAdapter
+import helloworld.mindmark.scorescreen.adapter.ScoreItemAdapter
+import helloworld.mindmark.scorescreen.adapter.ScoreScreenHeaderAdapter
 import helloworld.mindmark.scorescreen.mapper.ScoreItemMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

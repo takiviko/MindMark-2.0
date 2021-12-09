@@ -1,4 +1,4 @@
-package helloworld.mindmark.scorescreen
+package helloworld.mindmark.scorescreen.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import helloworld.mindmark.R
+import helloworld.mindmark.scorescreen.model.ScoreItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ScoreItemAdapter(private val dataSet: MutableList<ScoreItem>) : ListAdapter<ScoreItem, ScoreItemAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ScoreItemAdapter(private val dataSet: MutableList<ScoreItem>) : ListAdapter<ScoreItem, ScoreItemAdapter.ViewHolder>(
+    DIFF_CALLBACK
+) {
 
     companion object {
         val DIFF_CALLBACK: DiffUtil.ItemCallback<ScoreItem> = object : DiffUtil.ItemCallback<ScoreItem>() {

@@ -1,4 +1,4 @@
-package helloworld.mindmark.scorescreen
+package helloworld.mindmark.scorescreen.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

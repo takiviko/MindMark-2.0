@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MenuFragment">
+    tools:context=".mainmenu.MenuFragment">
 
     <TextView
         android:id="@+id/title_textview"
@@ -21,13 +21,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"
-        app:layout_constraintBottom_toTopOf="@+id/high_score_screen_button"
+        app:layout_constraintBottom_toTopOf="@+id/score_screen_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_textview" />
 
     <Button
-        android:id="@+id/high_score_screen_button"
+        android:id="@+id/score_screen_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/high_scores"

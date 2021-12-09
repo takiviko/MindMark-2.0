@@ -1,4 +1,4 @@
-package helloworld.mindmark.fragment
+package helloworld.mindmark.game
 
 import android.os.Bundle
 import android.view.LayoutInflater

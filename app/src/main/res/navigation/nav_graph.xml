@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MenuFragment"
-        android:name="helloworld.mindmark.fragment.MenuFragment"
+        android:name="helloworld.mindmark.mainmenu.MenuFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_menu">
         <action
@@ -19,20 +19,20 @@
     </fragment>
     <fragment
         android:id="@+id/GameFragment"
-        android:name="helloworld.mindmark.fragment.GameFragment"
+        android:name="helloworld.mindmark.game.GameFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_game">
         <action
-            android:id="@+id/action_GameFragment_to_HighScoreFragment"
-            app:destination="@id/HighScoreFragment" />
+            android:id="@+id/action_GameFragment_to_StatisticsScreenFragment"
+            app:destination="@id/StatisticsScreenFragment" />
     </fragment>
     <fragment
-        android:id="@+id/HighScoreFragment"
-        android:name="helloworld.mindmark.fragment.HighScoreFragment"
+        android:id="@+id/StatisticsScreenFragment"
+        android:name="helloworld.mindmark.statisticsscreen.StatisticsScreenFragment"
         android:label="@string/high_score_fragment_label"
-        tools:layout="@layout/fragment_high_score">
+        tools:layout="@layout/fragment_statistics_screen">
         <action
-            android:id="@+id/action_HighScoreFragment_to_MenuFragment"
+            android:id="@+id/action_StatisticsScreenFragment_to_MenuFragment"
             app:destination="@id/MenuFragment" />
         <argument
             android:name="scores"
@@ -40,6 +40,6 @@
     </fragment>
     <fragment
         android:id="@+id/scoreScreenFragment"
-        android:name="helloworld.mindmark.fragment.ScoreScreenFragment"
+        android:name="helloworld.mindmark.scorescreen.ScoreScreenFragment"
         android:label="ScoreScreenFragment" />
 </navigation>

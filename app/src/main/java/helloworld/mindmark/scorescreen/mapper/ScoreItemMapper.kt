@@ -2,7 +2,7 @@ package helloworld.mindmark.scorescreen.mapper
 
 import helloworld.mindmark.database.entity.Player
 import helloworld.mindmark.database.entity.Score
-import helloworld.mindmark.scorescreen.ScoreItem
+import helloworld.mindmark.scorescreen.model.ScoreItem
 
 class ScoreItemMapper {
 

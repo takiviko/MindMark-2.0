@@ -4,9 +4,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
-import helloworld.mindmark.database.AppDatabase
 import helloworld.mindmark.databinding.FragmentGameBinding
-import helloworld.mindmark.fragment.GameFragmentDirections
+import helloworld.mindmark.game.GameFragmentDirections
 import helloworld.mindmark.game.common.model.colour.UiColour
 import helloworld.mindmark.game.common.model.dto.ScoreDTO
 import helloworld.mindmark.game.common.util.UiColourRandomizer
@@ -86,7 +85,7 @@ class NormalModeRunner : GameModeRunner {
         val text = getFinishedText()
         binding.textView.text = text
 
-        val action: NavDirections = GameFragmentDirections.actionGameFragmentToHighScoreFragment(ScoreDTO(scores))
+        val action: NavDirections = GameFragmentDirections.actionGameFragmentToStatisticsScreenFragment(ScoreDTO(scores))
 
         Handler(Looper.getMainLooper()).postDelayed({
             binding.root.findNavController().navigate(action)

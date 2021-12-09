@@ -1,4 +1,4 @@
-package helloworld.mindmark.fragment
+package helloworld.mindmark.mainmenu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,7 +45,7 @@ class MenuFragment : Fragment() {
             findNavController().navigate(R.id.action_MenuFragment_to_GameFragment)
         }
 
-        binding.highScoreScreenButton.setOnClickListener {
+        binding.scoreScreenButton.setOnClickListener {
             findNavController().navigate(R.id.action_MenuFragment_to_scoreScreenFragment)
         }
     }

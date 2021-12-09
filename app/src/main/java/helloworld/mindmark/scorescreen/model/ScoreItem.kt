@@ -1,4 +1,4 @@
-package helloworld.mindmark.scorescreen
+package helloworld.mindmark.scorescreen.model
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package helloworld.mindmark.fragment
+package helloworld.mindmark.statisticsscreen
 
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +14,7 @@ import helloworld.mindmark.MainActivity
 import helloworld.mindmark.R
 import helloworld.mindmark.database.config.DBConfig
 import helloworld.mindmark.database.entity.Score
-import helloworld.mindmark.databinding.FragmentHighScoreBinding
+import helloworld.mindmark.databinding.FragmentStatisticsScreenBinding
 import helloworld.mindmark.game.service.runner.normal.NormalModeConfig.Companion.gameSpeed
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -23,9 +23,9 @@ import java.sql.Date
 import java.time.Instant
 import java.util.*
 
-class HighScoreFragment : Fragment() {
+class StatisticsScreenFragment : Fragment() {
 
-    private var _binding: FragmentHighScoreBinding? = null
+    private var _binding: FragmentStatisticsScreenBinding? = null
     private val binding get() = _binding!!
 
     private val dbConfig = DBConfig()
@@ -35,7 +35,7 @@ class HighScoreFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHighScoreBinding.inflate(inflater, container, false)
+        _binding = FragmentStatisticsScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,7 +45,7 @@ class HighScoreFragment : Fragment() {
         handleVirtualBackButton()
         handlePhysicalBackButton()
 
-        val args: HighScoreFragmentArgs by navArgs()
+        val args: StatisticsScreenFragmentArgs by navArgs()
         val scores = args.scores.scores
         val totalScore = scores.stream().reduce(0, Long::plus)
         val numberOfMisclicks = scores.stream()
@@ -80,14 +80,14 @@ class HighScoreFragment : Fragment() {
     }
 
     private fun handleVirtualBackButton() {
-        binding.highScoreScreenBackButton.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.action_HighScoreFragment_to_MenuFragment)
+        binding.statisticsScreenBackButton.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_StatisticsScreenFragment_to_MenuFragment)
         }
     }
 
     private fun handlePhysicalBackButton() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            findNavController().navigate(R.id.action_HighScoreFragment_to_MenuFragment)
+            findNavController().navigate(R.id.action_StatisticsScreenFragment_to_MenuFragment)
         }
     }
 
